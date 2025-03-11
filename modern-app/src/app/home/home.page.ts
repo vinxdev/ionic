@@ -1,20 +1,21 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, InfiniteScrollCustomEvent } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, InfiniteScrollCustomEvent,IonList,IonItem ,IonAvatar,IonSkeletonText, IonAlert, IonLabel, IonBadge, IonInfiniteScroll, IonInfiniteScrollContent} from '@ionic/angular/standalone';
 import { MovieService } from '../services/movie.service';
 import { catchError, finalize } from 'rxjs';
 import { MovieResults } from '../services/interfaces';
-
+import { DatePipe } from '@angular/common';
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent,IonList,IonItem,IonAvatar,IonSkeletonText,IonAlert,IonLabel,DatePipe,RouterModule,IonBadge,IonInfiniteScroll,IonInfiniteScrollContent],
 })
 export class HomePage {
   public currentPage:number = 1;
   public error = null;
   public isLoading:boolean = false;
-  public movies:MovieResults[] = [];
+  public movies:MovieResults[]=[];
   public imageBaseUrl = "https://image.tmdb.org/t/p";
 
   constructor(private movieService:MovieService) {
@@ -42,8 +43,8 @@ export class HomePage {
     )
     .subscribe({
       next:(res)=>{
-        console.log(res);
-        this.movies.push(...res.result);
+        console.log(res.results);
+        this.movies.push(...res.results);
         if(event){
           event.target.disabled = res.total_pages === this.currentPage;
         }
@@ -53,7 +54,8 @@ export class HomePage {
   };
 
   loadMore(event: InfiniteScrollCustomEvent){
-
+    this.currentPage++;
+    this.loadMovies(event)
   }
 
 }
