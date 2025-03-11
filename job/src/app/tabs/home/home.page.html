@@ -1,0 +1,80 @@
+<ion-content [fullscreen]="true" color="light">
+
+  <ion-header class="ion-no-border">
+    <ion-toolbar color="light"class="ion-padding-vertical">
+
+      <ion-title mode="ios">
+        <img [src]="'/assets/team.png'">
+      </ion-title>
+
+      <ion-buttons slot="start">
+        <ion-thumbnail class="menu">
+          <ion-icon name="apps-outline"></ion-icon>
+        </ion-thumbnail>
+      </ion-buttons>
+
+      <ion-buttons slot="end">
+        <ion-thumbnail>
+          <img [src]="'/assets/boy.png'">
+        </ion-thumbnail>
+      </ion-buttons>
+
+    </ion-toolbar>
+  </ion-header>
+
+  
+  <ion-row class="tagline">
+    <ion-col>
+      <ion-label>
+        <ion-text>
+          Find Your
+        </ion-text>
+        <p>
+          <ion-text class="dark">
+            Creative job
+          </ion-text>
+        </p>
+      </ion-label>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="srch">
+    <ion-col size="10">
+      <ion-searchbar class="srchBar" placeholder="Search for jobs"></ion-searchbar>
+    </ion-col>
+    <ion-col size="2">
+      <ion-buttons mode="ios" class="options">
+        <ion-icon name="options"></ion-icon>
+      </ion-buttons>
+    </ion-col>
+  </ion-row>
+
+  @if (popular.length > 0) {
+    <ion-list lines="none">
+      <ion-list-header>
+        <ion-label>
+          Popular Jobs
+        </ion-label>
+        <ion-buttons fill="clear" size="small">
+          <ion-text class="showMore">
+            Show all
+          </ion-text>
+        </ion-buttons>
+      </ion-list-header>
+
+      <div>
+        <swiper-container
+          [modules] = "swiperModules"
+          [slidesPerview] = "1"
+          [keyboard] = "true" 
+          [centerSlides] = "true">
+          @for (job of popular; track job.id){
+            <swipper-slide>
+              <app-job [job]="job" [roterlink]="['/','tabs',job.id]"/>
+            </swipper-slide>
+          } 
+        </swiper-container>
+      </div>
+    </ion-list>
+  }
+</ion-content> 

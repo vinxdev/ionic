@@ -1,0 +1,7 @@
+{
+  "name": "job",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

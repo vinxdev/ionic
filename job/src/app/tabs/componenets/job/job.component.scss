@@ -1,0 +1,15 @@
+.list-ios{
+    background-color: #222428;
+}
+
+ion-card{
+    background-color: var(--ion-color-dark);
+    margin: 1.5vh;
+    border-radius: 15px;
+    width:max-content;
+    ion-list{
+        background: transparent;
+        margin-top: 1vh;
+        margin-bottom: 1vh;
+    }
+}
