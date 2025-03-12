@@ -3,13 +3,13 @@ import { IonHeader, IonToolbar, IonTitle, IonContent, InfiniteScrollCustomEvent,
 import { MovieService } from '../services/movie.service';
 import { catchError, finalize } from 'rxjs';
 import { MovieResults } from '../services/interfaces';
-import { DatePipe } from '@angular/common';
+import { DatePipe, DecimalPipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent,IonList,IonItem,IonAvatar,IonSkeletonText,IonAlert,IonLabel,DatePipe,RouterModule,IonBadge,IonInfiniteScroll,IonInfiniteScrollContent],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent,IonList,IonItem,IonAvatar,IonAlert,IonLabel,DatePipe,RouterModule,IonBadge,IonInfiniteScroll,IonInfiniteScrollContent,DecimalPipe],
 })
 export class HomePage {
   public currentPage:number = 1;

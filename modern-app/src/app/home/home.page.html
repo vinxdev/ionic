@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="secondary">
+  <ion-toolbar>
     <ion-title>
       Trending Movies
     </ion-title>
@@ -7,18 +7,7 @@
 </ion-header>
 
 <ion-content>
-  @if (isLoading) {
-    <ion-list>
-      @for (item of movies; track item.id) {
-      <ion-item lines="none" class="ion-padding-bottom">
-        <ion-avatar slot="start">
-         <ion-skeleton-text></ion-skeleton-text>
-        </ion-avatar>
-        <ion-skeleton-text animated style="height:40px"/>
-      </ion-item>
-    }
-    </ion-list>
-  } @else if(error) {
+  @if(error) {
     <ion-alert header="Error" [message]="error" isOpen="true" [buttons]="['Ok']"></ion-alert>
   }
   <ion-list>
@@ -31,7 +20,7 @@
         <h3>{{item.title}}</h3>
         <h3 style="font-weight:lighter">{{item.release_date | date: 'y'}}</h3>
       </ion-label>
-      <ion-badge slot="end"> {{item.vote_average}} </ion-badge>
+      <ion-badge slot="end"> {{item.vote_average | number :'1.1-1'}} </ion-badge>
     </ion-item>
   } @empty {
     @if (!isLoading){
